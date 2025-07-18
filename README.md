@@ -1,4 +1,17 @@
-# anbya-CDI-CD-practice
-anbya-CDI/CD-practice
+# 🚀 anbya-CDI-CD-practice
+
+Repository untuk latihan CI/CD pipeline menggunakan GitHub Actions.
+
+## 📦 Deployment Status
+
+### ✅ Dev Branch
+![Deploy: Dev](https://github.com/anbya/anbya-CDI-CD-practice/actions/workflows/development-workflow.yaml/badge.svg)
+
+### ✅ Main Branch
+![Deploy: Main](https://github.com/anbya/anbya-CDI-CD-practice/actions/workflows/main-workflow.yaml/badge.svg)
+
+---
+
+## ✍️ Log Perubahan
 
 - 18-07-2025 03:18 update feature/new-feature branch
