@@ -22,14 +22,8 @@ jobs:
       - name: Determine environment and account
         id: env-setup
         run: |
-          # Set environment based on git ref
-          if [[ $GITHUB_REF == refs/tags/v* ]]; then
-              echo "ENVIRONMENT=prod" >> $GITHUB_OUTPUT
-              echo "ACCOUNT_ID=${{ vars.PROD_ACCOUNT_ID }}" >> $GITHUB_OUTPUT
-          else
-              echo "ENVIRONMENT=main" >> $GITHUB_OUTPUT
-              echo "ACCOUNT_ID=${{ vars.DEV_ACCOUNT_ID }}" >> $GITHUB_OUTPUT
-          fi
+          echo "ENVIRONMENT=prod" >> $GITHUB_OUTPUT
+          echo "ACCOUNT_ID=${{ vars.PROD_ACCOUNT_ID }}" >> $GITHUB_OUTPUT
 
       - name: Show environment info
         run: |
