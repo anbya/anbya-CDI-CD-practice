@@ -1,0 +1,39 @@
+name: Lambda Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy-lambda:
+    name: Deploy Lambda Function
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Determine environment and account
+        id: env-setup
+        run: |
+          # Set environment based on git ref
+          if [[ $GITHUB_REF == refs/tags/v* ]]; then
+              echo "ENVIRONMENT=prod" >> $GITHUB_OUTPUT
+              echo "ACCOUNT_ID=${{ vars.PROD_ACCOUNT_ID }}" >> $GITHUB_OUTPUT
+          else
+              echo "ENVIRONMENT=main" >> $GITHUB_OUTPUT
+              echo "ACCOUNT_ID=${{ vars.DEV_ACCOUNT_ID }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Show environment info
+        run: |
+          echo "Deploying to $ENVIRONMENT environment in account $ACCOUNT_ID"
+        env:
+          ENVIRONMENT: ${{ steps.env-setup.outputs.ENVIRONMENT }}
+          ACCOUNT_ID: ${{ steps.env-setup.outputs.ACCOUNT_ID }}
