@@ -1,4 +1,4 @@
-name: Lambda Deployment Pipeline
+name: Development Deployment Pipeline
 
 on:
   push:
